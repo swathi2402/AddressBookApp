@@ -49,6 +49,7 @@ const save = () => {
     try {
         let contactData = createContact();
         createAndUpdateStorage(contactData);
+        window.location.replace(site_properties.home_page);
     } catch (error) {
         return;
     }
