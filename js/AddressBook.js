@@ -12,7 +12,7 @@ class AddressBook {
     }
 
     set name(name) {
-        let nameRegex = RegExp('^[A-Z]{1}[a-z]{2,}$')
+        let nameRegex = RegExp('^[A-Z]{1}[a-z]{2,}$');
         if(nameRegex.test(name)) 
             this._name = name;
         else 
@@ -24,7 +24,7 @@ class AddressBook {
     }
 
     set phoneNumber(phoneNumber) {
-        let phoneRegex = RegExp('^([+]?[1-9][0-9]\\s)?[0-9]{10}$')
+        let phoneRegex = RegExp('^([+]?[1-9][0-9])?[0-9]{10}$');
         if(phoneRegex.test(phoneNumber)) 
             this._phoneNumber = phoneNumber;
         else 
@@ -36,7 +36,11 @@ class AddressBook {
     }
 
     set address(address) {
-        this._address = address;
+        let addressRegex = RegExp('([a-zA-Z]{3,})+$');
+        if(addressRegex.test(address)) 
+            this._address = address;
+        else 
+            throw 'Address is incorrect';
     }
 
     get city() {
@@ -60,7 +64,7 @@ class AddressBook {
     }
 
     set zipCode(zipCode) {
-        let zipRegex = RegExp('^[0-9]{3}\\s{0,1}[0-9]{3}$')
+        let zipRegex = RegExp('^[0-9]{3}\\s{0,1}[0-9]{3}$');
         if(zipRegex.test(zipCode)) 
             this._zipCode = zipCode;
         else 
