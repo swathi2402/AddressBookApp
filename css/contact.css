@@ -97,3 +97,109 @@ html body {
 .close-button:hover {
     cursor: pointer;
 }
+
+.row-content {
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    padding: 0px 100px;
+    border: 0px solid green;
+}
+
+.label {
+    min-width: 140px;
+}
+
+label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+}
+
+.text {
+    font-size: 18px;
+    color: #42515f;
+    opacity: 1;
+    font-family: Roboto;
+}
+
+.input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #bdbdbd;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+select {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+    font: normal normal normal 16px Roboto;
+    letter-spacing: 0px;
+    color: #42515f;
+    background-color: transparent;
+}
+
+.buttonParent {
+    display: flex;
+    padding: 0px 100px;
+    flex-direction: row;
+    margin-bottom: 60px;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.button {
+    font-size: 20px;
+    font-family: Roboto;
+    letter-spacing: 0px;
+    color: #42515f;
+    opacity: 1;
+    background: transparent;
+    border: none;
+    font-weight: 400;
+    min-width: 140px;
+    padding: 7px 7px;
+    border: 1px solid #707070;
+    cursor: pointer;
+}
+
+.submitButton, .resetButton {
+    background: #E2E2E2 0% 0% no-repeat padding-box;
+    border: 1px solid #969696;
+    border-radius: 5px;
+    opacity: 1;
+}
+
+.submitButton {
+    margin-right: 30px;
+}
+
+error-output {
+    font-size: 12px;
+    font-style: italic;
+    color: red;
+    margin-left: 10px;
+}
+
+.location-row {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 55px;
+}
+
+.location-row div {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    }
+
+.location-row div:nth-of-type(2) {
+    margin: 0px 25px;
+}
+
+.location-row input {
+    box-sizing: border-box;
+    font-size: 16px;
+}

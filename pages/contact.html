@@ -24,7 +24,51 @@
                     <a href="../pages/home_contact.html">
                         <img src="../assets/cancel.png" class="close-button" />
                     </a>
-                </div>               
+                </div>  
+                <div class="row-content">
+                    <label class="label text" for="name">Name</label>
+                    <input class="input" type="text" id="name" name="name" placeholder="" required>   
+                    <error-output class="name-error" for="name"></error-output>        
+                </div>
+                <div class="row-content">
+                    <label class="label text" for="phoneNumber">Phone Number</label>
+                    <input class="input" type="tel" id="phoneNumber" name="phoneNumber" required />
+                    <error-output class="tel-error" for="phoneNumber"></error-output>
+                </div>
+                <div class="row-content">
+                    <div class="text-row">
+                        <label class="label text" for="address">Address</label>
+                        <textarea id="address" class="input" name="address" placeholder="" required style="height: 100px"></textarea>
+                    </div>
+                </div>
+                <div class="row-content location-row">
+                    <div>
+                        <label class="label text" for="city">City</label>
+                        <select id="city" name="City">
+                            <option value="none" selected disabled hidden>Select City</option>
+                            <option value="Bangalore">Bangalore</option>
+                            <option value="Chennai">Chennai</option>
+                            <option value="Hyderabad">Hyderabad</option>
+                            <option value="Chennai">Maduri</option>
+                            <option value="Bangalore">Udupi</option>
+                            <option value="Hyderabad">Vijayawada</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="label text" for="state">State</label>
+                        <select id="state" name="State">
+                            <option value="none" selected disabled hidden>Select State</option>
+                            <option value="Karnataka">Karnataka</option>
+                            <option value="Telengana">Telengana</option>
+                            <option value="Tamil Nadu">Tamil Nadu</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="label text" for="zip">Zip Code</label>
+                        <input class="input" type="text" id="zip" name="zip" required />
+                        <error-output class="zip-error" for="zip"></error-output>
+                    </div>
+                </div>             
             </form>
         </div>
     </body>
