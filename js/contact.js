@@ -43,4 +43,19 @@ window.addEventListener("DOMContentLoaded", (event) => {
             zip_error.textContent = e;
         }
     });
+
+    const address = document.querySelector('#address');
+    const address_error = document.querySelector('.address-error');
+    address.addEventListener('input', function() {
+        if (address.value.length == 0) {
+            address_error.textContent = "";
+            return;
+        }
+        try {
+            new AddressBook().address = address.value;
+            address_error.textContent = "";
+        } catch (e) {
+            address_error.textContent = e;
+        }
+    });
 });
