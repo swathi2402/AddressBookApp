@@ -47,7 +47,8 @@ window.addEventListener("DOMContentLoaded", (event) => {
 
 const save = () => {
     try {
-        createContact();
+        let contactData = createContact();
+        createAndUpdateStorage(contactData);
     } catch (error) {
         return;
     }
@@ -82,4 +83,14 @@ const createContact = () => {
 const getInputValueById = (id) => {
     let value = document.querySelector(id).value;
     return value;
+}
+
+function createAndUpdateStorage(contactData) {
+    let contactList = JSON.parse(localStorage.getItem("AddressBookList"));
+    if(contactList != undefined) {
+        contactList.push(contactData);
+    } else {
+        contactList =  [contactData]
+    }
+    localStorage.setItem("AddressBookList", JSON.stringify(contactList));
 }
