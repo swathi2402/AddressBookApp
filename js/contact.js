@@ -44,3 +44,42 @@ window.addEventListener("DOMContentLoaded", (event) => {
         }
     });
 });
+
+const save = () => {
+    try {
+        createContact();
+    } catch (error) {
+        return;
+    }
+}
+
+const createContact = () => { 
+    let contactData = new AddressBook();
+    try {
+        contactData.name = getInputValueById("#name");
+    } catch (error) {
+        setTextValue('.name-error', error);
+        throw error;
+    }
+    try {
+        contactData.phoneNumber = getInputValueById("#phoneNumber");
+    } catch (error) {
+        setTextValue('.tel-error', error);
+        throw error;
+    }
+    try {
+        contactData.address = getInputValueById("#address");
+        contactData.city = getInputValueById("#city");
+        contactData.state = getInputValueById("#state");
+        contactData.zipCode = getInputValueById("#zip");
+        alert(contactData.toString());
+        return contactData;
+    } catch (error) {
+        alert(error);
+    }
+}
+
+const getInputValueById = (id) => {
+    let value = document.querySelector(id).value;
+    return value;
+}
