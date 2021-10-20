@@ -17,7 +17,7 @@ const checkZip = (zip) => {
 }
 
 const checkAddress = (address) => {
-    let addressRegex = RegExp('([a-zA-Z]{3,})+$');
+    let addressRegex = RegExp('([a-zA-Z]{3,}\\s?){2,}$');
         if(!addressRegex.test(address)) 
             throw 'Address is incorrect';
 }
