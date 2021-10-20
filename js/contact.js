@@ -75,6 +75,9 @@ const save = (event) => {
 }
 
 const setContactObject = () => {
+    if(!isUpdate && site_properties.use_local_storage.match("true")) { 
+        contactObj.id = createNewContactId();
+    }
     contactObj._name = getInputValueById('#name');
     contactObj._phoneNumber = getInputValueById("#phoneNumber");
     contactObj._address = getInputValueById("#address");
@@ -116,53 +119,18 @@ function createAndUpdateStorage() {
     if(contactList) {
         let contactData = contactList.find((contact) => contact.id == contactObj.id);
         if (!contactData){
-            contactList.push(createContactData());
+            contactList.push(contactObj);
         } else {
             const index = contactList
                     .map((contact) => contact.id)
                     .indexOf(contactData.id);
-            contactList.splice(index, 1, createContactData(contactData.id));
+            contactList.splice(index, 1, contactObj);
         }
     } else {
-        contactList =  [createContact()]
+        contactList =  [contactObj]
     }
     alert(contactList.toString());
     localStorage.setItem("AddressBookList", JSON.stringify(contactList));
-}
-
-const createContactData = (id) => {
-    let contactData = new AddressBook();
-    if(!id)
-        contactData.id = createNewContactId();
-    else
-        contactData.id = id;
-    setContactData(contactData);
-    return contactData;
-}
-
-const setContactData = (contactData) => {
-    try {
-        contactData.name = contactObj._name;
-    } catch (error) {
-        setTextValue('.name-error', error);
-        throw error;
-    }
-    try {
-        contactData.phoneNumber = contactObj._phoneNumber;
-    } catch (error) {
-        setTextValue('.tel-error', error);
-        throw error;
-    }
-    try {
-        contactData.address = contactObj._address;
-    } catch (error) {
-        setTextValue('.address-error', error);
-        throw error;
-    }
-    contactData.city = contactObj._city;
-    contactData.state = contactObj._state;
-    contactData.zipCode = contactObj._zipCode;
-    alert(contactData.toString());
 }
 
 const createNewContactId = () => {
