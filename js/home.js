@@ -1,12 +1,32 @@
 let contactList;
 window.addEventListener("DOMContentLoaded", (event) => {
-    contactList = getContactDataFromStorage();
-    createInnerHtml();
-    localStorage.removeItem('editContact');
+    if (site_properties.use_local_storage.match("true")) {
+        getContactDataFromStorage();
+    } else 
+        getContactDataFromServer();
 });
 
+const getContactDataFromServer = () => {
+    makePromisecall("GET", site_properties.server_url, true)
+        .then(responseText => {
+            contactList = JSON.parse(responseText);
+            processContactDataResponce();
+        })
+        .catch(error => {
+            console.log("GET Error Status: " + JSON.stringify(error));
+            contactList = [];
+            processContactDataResponce();
+        })
+}
+
+const processContactDataResponce = () => {
+    createInnerHtml();
+    localStorage.removeItem('editContact');
+}
+
 const getContactDataFromStorage = () => {
-    return localStorage.getItem('AddressBookList') ? JSON.parse(localStorage.getItem('AddressBookList')) : [];
+    contactList = localStorage.getItem('AddressBookList') ? JSON.parse(localStorage.getItem('AddressBookList')) : [];
+    processContactDataResponce();
 }
 
 const createInnerHtml = () => {
