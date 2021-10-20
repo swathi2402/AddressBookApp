@@ -89,6 +89,7 @@ const createContact = () => {
         contactData.city = getInputValueById("#city");
         contactData.state = getInputValueById("#state");
         contactData.zipCode = getInputValueById("#zip");
+        contactData.id = new Date().getTime();
         alert(contactData.toString());
         return contactData;
     } catch (error) {

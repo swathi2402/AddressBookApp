@@ -30,3 +30,14 @@ const createInnerHtml = () => {
     }
     document.querySelector('#display').innerHTML = innerHtml;
 }
+
+const remove = (node) => {
+    let contactData = contactList.find((contact) => contact._id == node.id);
+    if (!contactData) return;
+    const index = contactList
+                    .map((contact) => contact._id)
+                    .indexOf(contactData._id);
+    contactList.splice(index, 1);
+    localStorage.setItem("AddressBookList", JSON.stringify(contactList));
+    createInnerHtml();
+};
