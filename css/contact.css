@@ -175,6 +175,12 @@ select {
     margin-right: 30px;
 }
 
+.submitButton-disabled {
+    margin-right: 30px;
+    cursor: not-allowed;
+    border-radius: 5px;
+}
+
 error-output {
     font-size: 12px;
     font-style: italic;
