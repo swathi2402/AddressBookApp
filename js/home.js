@@ -2,6 +2,7 @@ let contactList;
 window.addEventListener("DOMContentLoaded", (event) => {
     contactList = getContactDataFromStorage();
     createInnerHtml();
+    localStorage.removeItem('editContact');
 });
 
 const getContactDataFromStorage = () => {
@@ -40,4 +41,11 @@ const remove = (node) => {
     contactList.splice(index, 1);
     localStorage.setItem("AddressBookList", JSON.stringify(contactList));
     createInnerHtml();
+};
+
+const update = (node) => {
+    let contactData = contactList.find((contact) => contact._id == node.id);
+    if (!contactData) return;
+    localStorage.setItem("editContact", JSON.stringify(contactData));
+    window.location.replace(site_properties.add_contact_page);
 };
