@@ -3,62 +3,58 @@ let contactObj = {};
 
 window.addEventListener("DOMContentLoaded", (event) => {
     const name = document.getElementById("name");
-    const textError = document.querySelector(".name-error");
     name.addEventListener('input', function () {
-      if (name.value.length == 0) {
-        textError.textContent = "";
-        return;
-      }
-      try {
-        new AddressBook().name = name.value;
-        textError.textContent = "";
-      } catch (e) {
-        textError.textContent = e;
-      }
-    });
-
-    const tel = document.querySelector('#phoneNumber');
-    const tel_error = document.querySelector('.tel-error');
-    tel.addEventListener('input', function() {
-        if (tel.value.length == 0) {
-            tel_error.textContent = "";
+        if (name.value.length == 0) {
+            setTextValue('.name-error', "");
             return;
         }
         try {
-            new AddressBook().phoneNumber = phoneNumber.value;
-            tel_error.textContent = "";
+            checkName(name.value);
+            setTextValue('.name-error', "");
         } catch (e) {
-            tel_error.textContent = e;
+            setTextValue('.name-error', e);
+        }
+    });
+
+    const tel = document.querySelector('#phoneNumber');
+    tel.addEventListener('input', function () {
+        if (tel.value.length == 0) {
+            setTextValue('.tel-error', "");
+            return;
+        }
+        try {
+            checkPhoneNumber(tel.value);
+            setTextValue('.tel-error', "");
+        } catch (e) {
+            setTextValue('.tel-error', e);
         }
     });
 
     const zip = document.querySelector('#zip');
-    const zip_error = document.querySelector('.zip-error');
-    zip.addEventListener('input', function() {
+    zip.addEventListener('input', function () {
         if (zip.value.length == 0) {
-            zip_error.textContent = "";
+            setTextValue('.zip-error', "");
             return;
         }
         try {
-            new AddressBook().zipCode = zip.value;
-            zip_error.textContent = "";
+            checkZip(zip.value);
+            setTextValue('.zip-error', "");
         } catch (e) {
-            zip_error.textContent = e;
+            setTextValue('.zip-error', e);
         }
     });
 
     const address = document.querySelector('#address');
-    const address_error = document.querySelector('.address-error');
-    address.addEventListener('input', function() {
+    address.addEventListener('input', function () {
         if (address.value.length == 0) {
-            address_error.textContent = "";
+            setTextValue('.address-error', "");
             return;
         }
         try {
-            new AddressBook().address = address.value;
-            address_error.textContent = "";
+            checkAddress(address.value);
+            setTextValue('.address-error', "");
         } catch (e) {
-            address_error.textContent = e;
+            setTextValue('.address-error', e);
         }
     });
 
@@ -70,7 +66,6 @@ const save = (event) => {
     event.stopPropagation();
     try {
         setContactObject();
-        console.log(contactObj);
         createAndUpdateStorage();
         resetForm();
         window.location.replace(site_properties.home_page);
@@ -120,7 +115,6 @@ function createAndUpdateStorage() {
     let contactList = JSON.parse(localStorage.getItem("AddressBookList"));
     if(contactList) {
         let contactData = contactList.find((contact) => contact._id == contactObj._id);
-        console.log("contactData: " + contactData);
         if (!contactData){
             contactList.push(createContactData());
         } else {
@@ -175,7 +169,6 @@ const createNewContactId = () => {
     let contactId = localStorage.getItem("ContactId");
     contactId = !contactId ? 1 : (parseInt(contactId) + 1).toString();
     localStorage.setItem("ContactId", contactId);
-    console.log(contactId);
     return contactId;
 }
 
