@@ -10,7 +10,7 @@ const getContactDataFromStorage = () => {
 }
 
 const createInnerHtml = () => {
-    const headerHtml = "<th>Name</th><th>Address</th><th>City</th><th>State</th><th>Zip Coode</th><th>Phone Number</th><th></th>"
+    const headerHtml = "<th>Name</th><th>Address</th><th>City</th><th>State</th><th>Zip Coode</th><th>Phone Number</th><th>Actions</th>"
     if (contactList.length == 0) return;
     let innerHtml = `${headerHtml}`;
     for (const contactData of contactList) {
