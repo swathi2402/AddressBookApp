@@ -23,8 +23,8 @@ const createInnerHtml = () => {
                 <td>${contactData._zipCode}</td>
                 <td>${contactData._phoneNumber}</td>
                 <td>
-                    <img id="${contactData._id}" onclick="remove(this)" alt="delete" src="../assets/delete-black-18dp.svg">
-                    <img id="${contactData._id}" onclick="update(this)" alt="edit" src="../assets/create-black-18dp.svg">
+                    <img id="${contactData.id}" onclick="remove(this)" alt="delete" src="../assets/delete-black-18dp.svg">
+                    <img id="${contactData.id}" onclick="update(this)" alt="edit" src="../assets/create-black-18dp.svg">
                 </td>
             </tr>
         `;
@@ -33,18 +33,18 @@ const createInnerHtml = () => {
 }
 
 const remove = (node) => {
-    let contactData = contactList.find((contact) => contact._id == node.id);
+    let contactData = contactList.find((contact) => contact.id == node.id);
     if (!contactData) return;
     const index = contactList
-                    .map((contact) => contact._id)
-                    .indexOf(contactData._id);
+                    .map((contact) => contact.id)
+                    .indexOf(contactData.id);
     contactList.splice(index, 1);
     localStorage.setItem("AddressBookList", JSON.stringify(contactList));
     createInnerHtml();
 };
 
 const update = (node) => {
-    let contactData = contactList.find((contact) => contact._id == node.id);
+    let contactData = contactList.find((contact) => contact.id == node.id);
     if (!contactData) return;
     localStorage.setItem("editContact", JSON.stringify(contactData));
     window.location.replace(site_properties.add_contact_page);

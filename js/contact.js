@@ -114,14 +114,14 @@ const getInputValueById = (id) => {
 function createAndUpdateStorage() {
     let contactList = JSON.parse(localStorage.getItem("AddressBookList"));
     if(contactList) {
-        let contactData = contactList.find((contact) => contact._id == contactObj._id);
+        let contactData = contactList.find((contact) => contact.id == contactObj.id);
         if (!contactData){
             contactList.push(createContactData());
         } else {
             const index = contactList
-                    .map((contact) => contact._id)
-                    .indexOf(contactData._id);
-            contactList.splice(index, 1, createContactData(contactData._id));
+                    .map((contact) => contact.id)
+                    .indexOf(contactData.id);
+            contactList.splice(index, 1, createContactData(contactData.id));
         }
     } else {
         contactList =  [createContact()]
