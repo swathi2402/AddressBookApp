@@ -83,7 +83,6 @@ function disableButton() {
 }
 
 const save = (event) => {
-    console.log("Hello");
     event.preventDefault();
     event.stopPropagation();
     try {
