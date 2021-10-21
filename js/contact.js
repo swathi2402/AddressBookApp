@@ -1,9 +1,9 @@
 let isUpdate = false;
 let contactObj = {};
 
-submitButton = document.getElementById('addButton');
-submitButton.disabled = true;
 window.addEventListener("DOMContentLoaded", (event) => {
+    submitButton = document.getElementById('addButton');
+    submitButton.disabled = true;
     const name = document.getElementById("name");
     name.addEventListener('input', function () {
         if (name.value.length == 0) {
@@ -13,10 +13,10 @@ window.addEventListener("DOMContentLoaded", (event) => {
         try {
             checkName(name.value);
             setTextValue('.name-error', "");
-            activateButton();
+            submitButton.disabled = false;
         } catch (e) {
             setTextValue('.name-error', e);
-            disableButton()
+            submitButton.disabled = true;
         }
     });
 
@@ -29,10 +29,10 @@ window.addEventListener("DOMContentLoaded", (event) => {
         try {
             checkPhoneNumber(tel.value);
             setTextValue('.tel-error', "");
-            activateButton();
+            submitButton.disabled = false;
         } catch (e) {
             setTextValue('.tel-error', e);
-            disableButton()
+            submitButton.disabled = true;
         }
     });
 
@@ -45,10 +45,10 @@ window.addEventListener("DOMContentLoaded", (event) => {
         try {
             checkZip(zip.value);
             setTextValue('.zip-error', "");
-            activateButton();
+            submitButton.disabled = false;
         } catch (e) {
             setTextValue('.zip-error', e);
-            disableButton()
+            submitButton.disabled = true;
         }
     });
 
@@ -61,26 +61,15 @@ window.addEventListener("DOMContentLoaded", (event) => {
         try {
             checkAddress(address.value);
             setTextValue('.address-error', "");
-            activateButton();
+            submitButton.disabled = false;
         } catch (e) {
             setTextValue('.address-error', e);
-            disableButton()
+            submitButton.disabled = true;
         }
     });
 
     checkForUpdate();
 });
-
-function activateButton() {
-    submitButton.classList.remove("submitButton-disabled");
-    submitButton.classList.add("submitButton");
-    submitButton.disabled = false;
-}
-
-function disableButton() {
-    submitButton.classList.add("submitButton-disabled");
-    submitButton.classList.remove("submitButton");
-}
 
 const save = (event) => {
     event.preventDefault();
