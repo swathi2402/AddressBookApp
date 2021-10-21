@@ -129,29 +129,6 @@ const setContactObject = () => {
     contactObj._zipCode = getInputValueById("#zip");
 }
 
-
-const createContact = () => { 
-    let contactData = new AddressBook();
-    try {
-        contactData.name = getInputValueById("#name");
-    } catch (error) {
-        setTextValue('.name-error', error);
-        throw error;
-    }
-    try {
-        contactData.phoneNumber = getInputValueById("#phoneNumber");
-        contactData.address = getInputValueById("#address");
-        contactData.city = getInputValueById("#city");
-        contactData.state = getInputValueById("#state");
-        contactData.zipCode = getInputValueById("#zip");
-        contactData.id = new Date().getTime();
-        alert(contactData.toString());
-        return contactData;
-    } catch (error) {
-        alert(error);
-    }
-}
-
 const getInputValueById = (id) => {
     let value = document.querySelector(id).value;
     return value;
